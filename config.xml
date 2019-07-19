@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ics.ICS-1" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>ICS-1</name>
+    <name>ICS_Fase2</name>
     <description>
-        Envia i rep dades i foto des del servei REST_1_ICS  en a200
+        Envia i rep dades i foto des del servei REST_1_ICS
     </description>
     <author email="suport@ics.gencat.cat" href="http://ics.gencat.cat/es/inici/index.html">
         ICS
