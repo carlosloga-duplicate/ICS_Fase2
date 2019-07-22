@@ -135,8 +135,8 @@ function getLlistaPacients()
     var sSector = $('#txtCampSECTOR').val(); 
 
     $.ajax({
-        url: constants("urlServeiREST") + "pacients",
-        data: {"usu": escape(sUsu), "sector": escape(sSector) },
+        url: constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,
+/*         data: {"usu": escape(sUsu), "sector": escape(sSector) }, */
         type: "GET",
         dataType: "json",
         headers: {"Accept": "application/json"},
