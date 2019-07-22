@@ -176,15 +176,16 @@ function getListaPacientsJPut()
     var sUsu = $('#txtCampUSU').val(); 
     var sSector = $('#txtCampSECTOR').val(); 
 
-    $.getJSON({
+    $.ajax({
        url: constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,   
        type: "GET",
        dataType: "json",
        headers: {"Accept": "application/json"},  
-       success:function(response){            
+       success:function(response){   
+alert(response);                    
             $('#divPacients').jPut({
-                  jsonData: data,  //json
-                  name:'pacs'     //jPut name              
+                  jsonData: response,  //json
+                  name:'pacs'          //jPut name              
             });
         },
         error: function(request, status, error) { 
