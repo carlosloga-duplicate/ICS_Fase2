@@ -141,16 +141,20 @@
             <table border="1">
                 <thead>
                    <tr>
-                      <td>Name </td>
-                      <td>Email</td>
-                      <td>Phone</td>
+                      <td>CIP</td>
+                      <td>nom</td>
+                      <td>CG1</td>
+                      <td>CG2</td>
+                      <td>Naix</td>
                    </tr> 
                 </thead>
-                <tbody jput="users" jput-jsondata='[]'>
+                <tbody jput="pacs">     <!-- jput-jsondata='[]' -->
                    <tr>
-                      <td>{{json.name}}</td>
-                      <td>{{json.email}}</td>
-                      <td>{{json.phone}}</td>
+                      <td>{{json.CIP}}</td>
+                      <td>{{json.nom}}</td>
+                      <td>{{json.cg1}}</td>
+                      <td>{{json.cg2}}</td>
+                      <td>{{json.dNaix}}</td>
                    </tr>
              </tbody>
              </table>

@@ -83,7 +83,7 @@ var app = {
                     }
                 }             
  
-                jPut.users.data=[{"name":"Shabeer","email":"user@gmail.com","phone":"+51 23126"},{"name":"Shibu","email":"user@gmail.com","phone":"+51 23126"},{"name":"Shabeer","email":"user@gmail.com","phone":"+51 23126"}];
+                /* jPut.users.data=[{"name":"Shabeer","email":"user@gmail.com","phone":"+51 23126"},{"name":"Shibu","email":"user@gmail.com","phone":"+51 23126"},{"name":"Shabeer","email":"user@gmail.com","phone":"+51 23126"}]; */
 
             });                   
         }); 

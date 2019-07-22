@@ -167,3 +167,30 @@ alert(sResp); */
         }
     });
 }
+
+function getListaPacientsJPut()
+{
+    $('#pTxtAvis').html(constants("WAITRebent"));
+    $('#Avis').show();
+
+    var sUsu = $('#txtCampUSU').val(); 
+    var sSector = $('#txtCampSECTOR').val(); 
+
+    $.getJSON({
+       url: constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,   
+       type: "GET",
+       dataType: "json",
+       headers: {"Accept": "application/json"},  
+       success:function(response){            
+            $('#divPacients').jPut({
+                  jsonData: data,  //json
+                  name:'pacs'     //jPut name              
+            });
+        },
+        error: function(request, status, error) { 
+            $('#pTxtAvis').html("");
+            $('#Avis').hide();
+            mensajePopup('KO', constants('ERRORRevent') + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
+        }
+    });
+}
