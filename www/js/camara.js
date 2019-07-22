@@ -70,7 +70,7 @@ function onCapturePhoto(fileURI) {
     options.params = params;  
 
     var ft = new FileTransfer();
-    ft.upload(fileURI, encodeURI(constants("urlServeiREST")), OKfoto, ERRORfoto, options);
+    ft.upload(fileURI, encodeURI(constants("urlServeiREST") + "Foto"), OKfoto, ERRORfoto, options);
     
     nEnvia = setTimeout(function() {    
         ft.abort();    

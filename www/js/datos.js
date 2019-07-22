@@ -87,7 +87,7 @@ function historicoUsuSector()
     var sSector = $('#txtCampSECTOR').val(); 
 
     $.ajax({
-        url: constants("urlServeiREST"),
+        url: constants("urlServeiREST") + "Foto",
         data: {"usu": escape(sUsu), "sector": escape(sSector) },
         type: "GET",
         dataType: "json",
@@ -135,7 +135,7 @@ function getLlistaPacients()
     var sSector = $('#txtCampSECTOR').val(); 
 
     $.ajax({
-        url: constants("urlServeiREST"),
+        url: constants("urlServeiREST") + "pacients",
         data: {"usu": escape(sUsu), "sector": escape(sSector) },
         type: "GET",
         dataType: "json",
@@ -147,13 +147,13 @@ function getLlistaPacients()
             //mensajePopup('OK', constants('OKRebent'), 4000);
             var sResp = "";
 alert(response);
-            var aRegistros = response.split("#");
+/*             var aRegistros = response.split("#");
 alert("length: " + aRegistros.lenght.toString());
             for(var x=0; x<aRegistros.lenght; x++)
             {
                 sResp += aRegistros[x].replace("|"," / ") + "<br/>";
             }
-alert(sResp);
+alert(sResp); */
 /*             $('#txtCampOBS').prop('disabled', false);
             $('#txtCampOBS').css('overflow', 'hidden').autogrow();
             $("#txtCampOBS").val(sResp);
