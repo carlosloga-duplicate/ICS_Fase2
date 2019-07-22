@@ -182,9 +182,10 @@ function getListaPacientsJPut()
        dataType: "json",
        headers: {"Accept": "application/json"},  
        success:function(response){   
-alert(response);                    
+/* alert(response);    */         
+            var pacients = JSON.stringify(response); 
             $('#divPacients').jPut({
-                  jsonData: response,  //json
+                  jsonData: pacients,  //json
                   name:'pacs'          //jPut name              
             });
         },
