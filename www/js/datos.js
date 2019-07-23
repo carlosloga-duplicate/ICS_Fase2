@@ -195,7 +195,7 @@ alert(response);
         }
     }); */
 
-    $('#divPacients').jPut({
+/*     $('#divPacients').jPut({
         ajax_url:constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,
         name:'pacs', 	//jPut Template name
         prepend:true,
@@ -206,5 +206,17 @@ alert(response);
             mensajePopup('KO', constants('ERRORRevent') + msg + "\n" + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
         }
     });
+ */
 
+    $('#tablePacients').jPut({
+        ajax_url:constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,
+        name:'pacs',
+        error:function(msg)
+        {
+            $('#pTxtAvis').html("");
+            $('#Avis').hide();
+            mensajePopup('KO', constants('ERRORRevent') + msg + "\n" + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
+        }
+    }); 
+     
 }
