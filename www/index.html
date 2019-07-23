@@ -161,26 +161,28 @@
            </div> -->
 
            <!-- jPut template -->
-
-        <table jPut="plantillaPacients">
-            <tr>
-                <td>{{CIP}}</td>
-                <td>{{nom}}</td>
-                <td>{{cg1}}</td>
-                <td>{{cg2}}</td>
-                <td>{{dNaix}}</td>
-            </tr>   
-        </table>
-        <!-- table you want to append --> 
-        <table border="1" id="tablaPacients" name="tablaPacients">
-            <tr>
-                <td>CIP</td>
-                <td>NOM</td>
-                <td>CG1</td>
-                <td>CG2</td>
-                <td>D.NAIX</td>
-            </tr>  
-        </table>
+        <div>
+            <table jPut="plantillaPacients">
+                <tr>
+                    <td>{{CIP}}</td>
+                    <td>{{nom}}</td>
+                    <td>{{cg1}}</td>
+                    <td>{{cg2}}</td>
+                    <td>{{dNaix}}</td>
+                </tr>   
+            </table>
+            <!-- table you want to append --> 
+            <table border="1" id="tablaPacients" name="tablaPacients">
+                <tr>
+                    <td>CIP</td>
+                    <td>NOM</td>
+                    <td>CG1</td>
+                    <td>CG2</td>
+                    <td>D.NAIX</td>
+                </tr>  
+            </table>
+            <br/><br/> 
+        </div>
 
         <!-- MENSAJES POP UPs -->
         <div data-role="popup" id="AvisEnvioOK" name="AvisEnvioOK" data-dismissible="false" data-history="false" data-position-to="window" class="ui-content" style="max-width:280px; background-color: #c7efc4;">
