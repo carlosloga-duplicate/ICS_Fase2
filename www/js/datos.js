@@ -234,10 +234,11 @@ alert(JSON.stringify(datosObtenidos));
         type: "GET",
         dataType: "json",
         headers: {"Accept": "application/json"},  
-        success:function(response){   
- alert(response);  
+        success:function(response){  
+            var respFormat = response;
+            respFormat = respFormat.replace('{"CIP":"','{"CIP":"<a href="#">X</a>');       
             var myTable = $('.example').htmlson({        
-                data: response        
+                data: respFormat        
             });
          },
          error: function(request, status, error) { 
