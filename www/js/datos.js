@@ -208,7 +208,7 @@ alert(response);
     });
  */
 
-    $('#tablaPacients').jPut({
+/*     $('#tablaPacients').jPut({
         ajax_url:constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,
         ajax_type:'GET',
         ajax_dataType:'json',
@@ -226,6 +226,25 @@ alert(JSON.stringify(datosObtenidos));
             $('#Avis').hide();
             mensajePopup('KO', constants('ERRORRevent') + msg + "\n" + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
         }
-    }); 
+    });  */
      
+
+    $.ajax({
+        url: constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,   
+        type: "GET",
+        dataType: "json",
+        headers: {"Accept": "application/json"},  
+        success:function(response){   
+ alert(response);  
+            var myTable = $('.example').htmlson({        
+                data: response        
+            });
+         },
+         error: function(request, status, error) { 
+             $('#pTxtAvis').html("");
+             $('#Avis').hide();
+             mensajePopup('KO', constants('ERRORRevent') + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
+         }
+     });
+        
 }
