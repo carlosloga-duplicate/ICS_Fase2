@@ -176,7 +176,7 @@ function getListaPacientsJPut()
     var sUsu = $('#txtCampUSU').val(); 
     var sSector = $('#txtCampSECTOR').val(); 
 
-    $.ajax({
+/*     $.ajax({
        url: constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,   
        type: "GET",
        dataType: "json",
@@ -193,5 +193,18 @@ alert(response);
             $('#Avis').hide();
             mensajePopup('KO', constants('ERRORRevent') + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
         }
+    }); */
+
+    $('#divPacients').jPut({
+        ajax_url:constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,
+        name:'pacs', 	//jPut Template name
+        prepend:true,
+        error:function(msg)
+        {
+            $('#pTxtAvis').html("");
+            $('#Avis').hide();
+            mensajePopup('KO', constants('ERRORRevent') + msg + "\n" + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
+        }
     });
+
 }
