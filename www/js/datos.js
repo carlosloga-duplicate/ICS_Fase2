@@ -210,10 +210,12 @@ alert(response);
 
     $('#tablaPacients').jPut({
         ajax_url:constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,
+        ajax_type:'GET',
+        ajax_dataType:'json',
         name:'plantillaPacients',
-        success:function(response)
+        done:function(datosObtenidos)
         {
-alert(response);            
+alert(datosObtenidos);            
             $('#pTxtAvis').html("");
             $('#Avis').hide();
         },
