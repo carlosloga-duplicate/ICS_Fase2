@@ -208,9 +208,14 @@ alert(response);
     });
  */
 
-    $('#tablePacients').jPut({
+    $('#tablaPacients').jPut({
         ajax_url:constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,
-        name:'pacs',
+        name:'plantillaPacients',
+        success:function()
+        {
+            $('#pTxtAvis').html("");
+            $('#Avis').hide();
+        },
         error:function(msg)
         {
             $('#pTxtAvis').html("");
