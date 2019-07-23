@@ -187,7 +187,7 @@ function getListaPacientsJPut()
             $('#divPacients').jPut({
                   jsonData: pacients,  //json
                   name:'pacs'          //jPut name              
-            });
+            })
         },
         error: function(request, status, error) { 
             $('#pTxtAvis').html("");
