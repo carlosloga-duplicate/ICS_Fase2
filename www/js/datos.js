@@ -215,7 +215,8 @@ alert(response);
         name:'plantillaPacients',
         done:function(datosObtenidos)
         {
-alert(datosObtenidos);            
+            var res = JSON.stringify(datosObtenidos); 
+alert(res);            
             $('#pTxtAvis').html("");
             $('#Avis').hide();
         },
