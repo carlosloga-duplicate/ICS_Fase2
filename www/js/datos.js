@@ -211,8 +211,9 @@ alert(response);
     $('#tablaPacients').jPut({
         ajax_url:constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,
         name:'plantillaPacients',
-        success:function()
+        success:function(response)
         {
+alert(response);            
             $('#pTxtAvis').html("");
             $('#Avis').hide();
         },
