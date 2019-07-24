@@ -238,7 +238,7 @@ alert(JSON.stringify(datosObtenidos));
         success:function(response){  
             $('#pTxtAvis').html("");
             $('#Avis').hide();         
-            response = response.split('{"CIP":"').join('{"CIP":"<a href="#">X</a>');
+            response = response.split('{"CIP":"').join('{"CIP":"<a href=\'cip\'>X</a>');
 alert(response); 
 try
 {
