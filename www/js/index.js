@@ -51,8 +51,8 @@ var app = {
                 $.mobile.changePage('#pagePrincipal', {transition: "flow"}); 
 
                 /* Inhabilitar el envio hasta que se seleccione un pacient */
-                $("#divObservacions").prop('disabled',true);
-                $("#divBotonEnviar").prop('disabled',true);   
+                $("#divObservacions").children().prop('disabled',true);
+                $("#divBotonEnviar").children().prop('disabled',true);   
 
                 var datosUsu = "";
                 try
@@ -97,8 +97,8 @@ var app = {
             var CIPsel = $(this).val(); 
             if(CIPsel != '') /* Si se ha seleccionado un pacient ==> hailitar el envio */
             {
-                $("#divObservacions").prop('disabled',false);
-                $("#divBotonEnviar").prop('disabled',false);                
+                $("#divObservacions").children().prop('disabled',false);
+                $("#divBotonEnviar").children().prop('disabled',false);                 
             }
         });
 
