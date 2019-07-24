@@ -15,7 +15,11 @@ function JSONtoPacients(strJSONpacients)
     $.each(oJSONpacients, function(index, valor) {         
     }); */
 
-    var pacients = {};
+    alert('len: ' + strJSONpacients.length.toString());
+    alert(strJSONpacients[0]);
+    alert(strJSONpacients[0]["CIP"]);
+    
+    var pacients = new Array();
     try {
         for (var i = 0; i < strJSONpacients.length; i++){  
 alert(strJSONpacients[i]["CIP"]);                  
