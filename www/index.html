@@ -109,7 +109,7 @@
 
             <br/>
             
-            <!-- GESTIÓN USU y SECTOR -->
+            <!-- CONFIGURACIÓ USU, SECTOR i DESCÀRREGA DE PACIENTS -->
             <div style="background-color: #009EFF;">
                 <table style="width: 100%;">
                     <tr>
@@ -122,17 +122,19 @@
                     </tr>       
                 </table>
                 <table  style="width: 100%;">
-                    <tr id="trBotonGuardaDatosUSU" name="trBotonGuardaDatosUSU">
-                        <td style="background-color: #009EFF; text-align: left;">                            
-                            <a href="#" data-mini="true" id="botonGetPacients" data-inline="true" data-role="button" name="botonHistoricoUsuSector" onclick="getLlistaPacients();">Pacients</a>
-                        </td>                   
-                        <td style="background-color: #009EFF; text-align: right;">
+                    <tr id="trBotonGuardaDatosUSU" name="trBotonGuardaDatosUSU">                 
+                        <td style="background-color: #009EFF; text-align: right; width: 50%;">
                             <a href="#" data-mini="true" id="botonCancelaDatosUSU" data-inline="true" data-role="button" name="botonCancelaDatosUSU" onclick="cancelaUsuSector();">Cancel·lar</a>                            
                         </td>                  
-                        <td style="background-color: #009EFF; text-align: right;">
+                        <td style="background-color: #009EFF; text-align: right; width: 50%;">
                             <a href="#" data-mini="true" id="botonGuardaDatosUSU" data-inline="true" data-role="button" name="botonGuardaDatosUSU" onclick="guardaUsuSector();">Guardar</a>                            
-                        </td>                  
+                        </td>                
                     </tr>  
+                    <tr>
+                        <td colspan="2" style="text-align: center; width: 100%;">                            
+                            <a href="#" data-mini="true" id="botonGetPacients" data-inline="true" data-role="button" name="botonGetPacients" onclick="getLlistaPacients();">Descarregar pacients</a>
+                        </td>  
+                    </tr>
                 </table>
             </div>
 
