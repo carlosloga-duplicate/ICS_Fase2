@@ -168,68 +168,19 @@ alert(sResp); */
     });
 }
 
-function getListaPacients()
+function getLlistaPacients()
 {
     $('#pTxtAvis').html(constants("WAITRebent"));
     $('#Avis').show();
 
+    /*  Recuperar los datos guardados en LocalStorage o ...
+        var datosUsu = recuperaDatosUSU();
+        var sUsu = datosUsu.split("|")[0]; 
+        var sSector = datosUsu.split("|")[1];  */
+    /* ... o Recuperar los datos de los campos de texto  */
     var sUsu = $('#txtCampUSU').val(); 
     var sSector = $('#txtCampSECTOR').val(); 
 
-/*     $.ajax({
-       url: constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,   
-       type: "GET",
-       dataType: "json",
-       headers: {"Accept": "application/json"},  
-       success:function(response){   
-alert(response);  
-            $('#divPacients').jPut({
-                  jsonData: response,  //json
-                  name:'pacs'          //jPut name              
-            })
-        },
-        error: function(request, status, error) { 
-            $('#pTxtAvis').html("");
-            $('#Avis').hide();
-            mensajePopup('KO', constants('ERRORRevent') + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
-        }
-    }); */
-
-/*     $('#divPacients').jPut({
-        ajax_url:constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,
-        name:'pacs', 	//jPut Template name
-        prepend:true,
-        error:function(msg)
-        {
-            $('#pTxtAvis').html("");
-            $('#Avis').hide();
-            mensajePopup('KO', constants('ERRORRevent') + msg + "\n" + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
-        }
-    });
- */
-
-/*     $('#tablaPacients').jPut({
-        ajax_url:constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,
-        ajax_type:'GET',
-        ajax_dataType:'json',
-        name:'plantillaPacients',
-        done:function(datosObtenidos)
-        {
-alert(datosObtenidos + " ||| " + datosObtenidos.lenght.toString());
-alert(JSON.stringify(datosObtenidos));            
-            $('#pTxtAvis').html("");
-            $('#Avis').hide();
-        },
-        error:function(msg)
-        {
-            $('#pTxtAvis').html("");
-            $('#Avis').hide();
-            mensajePopup('KO', constants('ERRORRevent') + msg + "\n" + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
-        }
-    });  */
-     
-
-    /* Este plugin (htmlson) funciona si el servicio REST devuelve objeto JSON (no string JSON) */
     $.ajax({
         url: constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,   
         type: "GET",
@@ -238,20 +189,8 @@ alert(JSON.stringify(datosObtenidos));
         success:function(response){  
             $('#pTxtAvis').html("");
             $('#Avis').hide();         
-            response = response.split('{"CIP":"').join('{"CIP":"<a href=\'cip\'>X</a>');
-alert(response); 
-try
-{
-    var o = JSON.parse(response);
-    alert('ok'); 
-}   
-catch(e) 
-{
-    alert(e.message);
-}           
-            var myTable = $('.example').htmlson({        
-                data: JSON.parse(response)       
-            });
+            var aPacients = JSONtoPacients(response);
+            CrearLlistaDePacients(aPacients);
          },
          error: function(request, status, error) { 
             $('#pTxtAvis').html("");

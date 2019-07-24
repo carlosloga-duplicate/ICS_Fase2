@@ -50,6 +50,10 @@ var app = {
 
                 $.mobile.changePage('#pagePrincipal', {transition: "flow"}); 
 
+                /* Inhabilitar el envio hasta que se seleccione un pacient */
+                $("#divObservacions").prop('disabled',true);
+                $("#divBotonEnviar").prop('disabled',true);   
+
                 var datosUsu = "";
                 try
                 {
@@ -88,6 +92,16 @@ var app = {
             });                   
         }); 
         
+        /* Evento al seleccionar un pacient */
+        $("#selectPacient").change(function() {
+            var CIPsel = $(this).val(); 
+            if(CIPsel != '') /* Si se ha seleccionado un pacient ==> hailitar el envio */
+            {
+                $("#divObservacions").prop('disabled',false);
+                $("#divBotonEnviar").prop('disabled',false);                
+            }
+        });
+
         /* SALIR DE LA APP CUANDO SE PULSE LA TECLA BACK */
         $(window).on("navigate", function (event, data) {
             var direction = data.state.direction;

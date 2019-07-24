@@ -93,7 +93,8 @@
                 <table  style="width: 100%;">
                     <tr id="trBotonGuardaDatosUSU" name="trBotonGuardaDatosUSU">
                         <td style="background-color: #009EFF; text-align: left;">
-                                <a href="#" data-mini="true" id="botonHistoricoUsuSector" data-inline="true" data-role="button" name="botonHistoricoUsuSector" onclick="historicoUsuSector();">Històric</a>                            
+                                <!-- <a href="#" data-mini="true" id="botonHistoricoUsuSector" data-inline="true" data-role="button" name="botonHistoricoUsuSector" onclick="historicoUsuSector();">Històric</a>    -->                         
+                                <a href="#" data-mini="true" id="botonGetPacients" data-inline="true" data-role="button" name="botonHistoricoUsuSector" onclick="getLlistaPacients();">Pacients</a>
                         </td>
                         <td style="background-color: #009EFF;">&nbsp;</td>                      
                         <td style="background-color: #009EFF; text-align: right;">
@@ -108,8 +109,13 @@
 
             <br/>
 
+            <!-- LLISTA DE PACIENTS -->
+            <div id="divPacients" name="divPacients">
+                <select name="selectPacient" id="selectPacient"></select>
+            </div>
+
             <!-- OBSERVACIONES -->
-            <div>
+            <div name="divObservacions" id="divObservacions">
                 <table style="width: 99%;"></table>     
                     <tr>
                         <td><label for="text-basic">Observacions</label></td>
@@ -131,35 +137,6 @@
             </div>
 
             <br/>
-            <div id="divBotonGET" style="width: 100%; text-align: center;">
-                <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-action" onclick="getListaPacients();">pacients</a>                
-            </div> 
-
-           <!-- jPut template -->
-<!--         <div>
-            <table jPut="plantillaPacients">
-                <tr>
-                    <td>{{CIP}}</td>
-                    <td>{{nom}}</td>
-                    <td>{{cg1}}</td>
-                    <td>{{cg2}}</td>
-                    <td>{{dNaix}}</td>
-                </tr>   
-            </table>
-            <table border="1" id="tablaPacients" name="tablaPacients">
-                <tr>
-                    <td>CIP</td>
-                    <td>NOM</td>
-                    <td>CG1</td>
-                    <td>CG2</td>
-                    <td>D.NAIX</td>
-                </tr>  
-            </table>
-            <br/><br/> 
-        </div> -->
-
-        <table class="example"></table>
-        <br/><br/> 
 
         <!-- MENSAJES POP UPs -->
         <div data-role="popup" id="AvisEnvioOK" name="AvisEnvioOK" data-dismissible="false" data-history="false" data-position-to="window" class="ui-content" style="max-width:280px; background-color: #c7efc4;">
