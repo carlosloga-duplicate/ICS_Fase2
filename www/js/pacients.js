@@ -47,7 +47,7 @@ alert(aPacients[i].cip);
     }
     else
     {
-        selPac.append('<option value="">No hi ha pacients</option>');
+        selPac.append('<option value="">No pacients</option>');
     }
     selPac.selectmenu();
     selPac.selectmenu('refresh', true);
