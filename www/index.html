@@ -132,33 +132,9 @@
 
             <br/>
             <div id="divBotonGET" style="width: 100%; text-align: center;">
-                <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-action" onclick="getListaPacientsJPut();">Llista de pacients</a>
+                <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-action" onclick="getListaPacients1();">LP1</a>
+                <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-action" onclick="getListaPacients2();">LP2</a>
             </div> 
-
-            <!-- Creating a jPut template --> 
-            <!-- while rendering the json data {{link}}  will be replced with the json data value. -->	
-<!--            <div id="divPacients" name="divPacients">
-            <table border="1">
-                <thead>
-                   <tr>
-                      <td>CIP</td>
-                      <td>nom</td>
-                      <td>CG1</td>
-                      <td>CG2</td>
-                      <td>Naix</td>
-                   </tr> 
-                </thead>
-                <tbody jput='pacs' jput-jsondata='[]'>  
-                   <tr>
-                      <td>{{json-CIP}}</td>
-                      <td>{{json-nom}}</td>
-                      <td>{{json-cg1}}</td>
-                      <td>{{json-cg2}}</td>
-                      <td>{{json-dNaix}}</td>
-                   </tr>
-                </tbody>
-             </table>
-           </div> -->
 
            <!-- jPut template -->
 <!--         <div>
@@ -184,7 +160,7 @@
         </div> -->
 
         <table class="example"></table>
-
+        <br/><br/> 
 
         <!-- MENSAJES POP UPs -->
         <div data-role="popup" id="AvisEnvioOK" name="AvisEnvioOK" data-dismissible="false" data-history="false" data-position-to="window" class="ui-content" style="max-width:280px; background-color: #c7efc4;">

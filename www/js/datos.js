@@ -168,7 +168,7 @@ alert(sResp); */
     });
 }
 
-function getListaPacientsJPut()
+function getListaPacients1()
 {
     $('#pTxtAvis').html(constants("WAITRebent"));
     $('#Avis').show();
@@ -236,20 +236,54 @@ alert(JSON.stringify(datosObtenidos));
         dataType: "json",
         headers: {"Accept": "application/json"},  
         success:function(response){  
+            $('#pTxtAvis').html("");
+            $('#Avis').hide();
 /*            var respFormat = response;
 alert(respFormat);            
             respFormat = respFormat.replace('{"CIP":"','{"CIP":"<a href="#">X</a>');       
 alert(respFormat);     */    
-            var objResp =  JSON.parse(response);
             var myTable = $('.example').htmlson({        
-                data: response         
+                data: JSON.parse(response)       
             });
          },
          error: function(request, status, error) { 
-             $('#pTxtAvis').html("");
-             $('#Avis').hide();
-             mensajePopup('KO', constants('ERRORRevent') + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
+            $('#pTxtAvis').html("");
+            $('#Avis').hide();
+            mensajePopup('KO', constants('ERRORRevent') + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
          }
      });
-        
 }
+
+function getListaPacients2()
+{
+    $('#pTxtAvis').html(constants("WAITRebent"));
+    $('#Avis').show();
+
+    var sUsu = $('#txtCampUSU').val(); 
+    var sSector = $('#txtCampSECTOR').val(); 
+
+    /* Este plugin (htmlson) funciona si el servicio REST devuelve objeto JSON (no string JSON) */
+    $.ajax({
+        url: constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,   
+        type: "GET",
+        dataType: "json",
+        headers: {"Accept": "application/json"},  
+        success:function(response){  
+            $('#pTxtAvis').html("");
+            $('#Avis').hide();
+/*            var respFormat = response;
+alert(respFormat);            
+            respFormat = respFormat.replace('{"CIP":"','{"CIP":"<a href="#">X</a>');       
+alert(respFormat);     */    
+            var myTable = $('.example').htmlson({        
+                data: response       
+            });
+         },
+         error: function(request, status, error) { 
+            $('#pTxtAvis').html("");
+            $('#Avis').hide();
+            mensajePopup('KO', constants('ERRORRevent') + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
+         }
+     });
+}
+
