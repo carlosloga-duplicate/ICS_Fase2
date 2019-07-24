@@ -68,8 +68,11 @@ function cancelaUsuSector()
 
 function cambiaUsuSector()
 {
-    if($("#trBotonGuardaDatosUSU").is(':visible') )    
-        EstadoUSUsector(false); 
+    if($("#trBotonGuardaDatosUSU").is(':visible') )  
+    {          
+        EstadoUSUsector(false);         
+        
+    }
     else
         EstadoUSUsector(true); 
 }

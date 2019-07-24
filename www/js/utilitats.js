@@ -75,3 +75,9 @@ function linkWebsiteICS()
     location.href='http://ics.gencat.cat/ca/inici';
 }
 
+function ScrollHastaAbajo()
+{
+    $('html, body').animate({
+        scrollTop: $("#abajo").offset().top
+    }, 500);
+}

@@ -27,6 +27,12 @@ function clearCacheCamera() {
 }
 
 function capturePhoto() {  
+    var selectedCIPpacient = $("#selectPacient").val(); 
+    if(selectedCIPpacient == '')
+    {
+        mensajePopup('KO', 'ERROR: No hi ha cap pacient seleccionat',0); // + error.target, 0);
+        return;
+    }
     $('#divBotonEnviar').hide(); //Ocultar botón de Adjuntar i enviar foto
     $('#pTxtAvis').html(constants('WAITEnviant')); //Mostrar aviso 'enviando...'
     $('#Avis').show();

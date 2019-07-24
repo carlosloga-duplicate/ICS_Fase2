@@ -78,35 +78,6 @@
         <!-- CONTENIDO -->
         <div data-role="content" data-theme="a">
 
-            <!-- GESTIÓN USU y SECTOR -->
-            <div style="background-color: #009EFF;">
-                <table style="width: 100%;">
-                    <tr>
-                        <td colspan="2" style="width: 50%;"><label for="text-basic" data-mini="true" style="color: white;">&nbsp;Usuari</label></td>
-                        <td colspan="2" style="width: 50%;"><label for="text-basic" data-mini="true" style="color: white;">&nbsp;Sector</label></td>                    
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="width: 50%;"><input type="text" name="txtCampUSU" id="txtCampUSU" data-mini="true" readonly></td>
-                        <td colspan="2" style="width: 50%;"><input type="text" name="txtCampSECTOR" id="txtCampSECTOR" data-mini="true" readonly></td>
-                    </tr>       
-                </table>
-                <table  style="width: 100%;">
-                    <tr id="trBotonGuardaDatosUSU" name="trBotonGuardaDatosUSU">
-                        <td style="background-color: #009EFF; text-align: left;">                            
-                            <a href="#" data-mini="true" id="botonGetPacients" data-inline="true" data-role="button" name="botonHistoricoUsuSector" onclick="getLlistaPacients();">Pacients</a>
-                        </td>                   
-                        <td style="background-color: #009EFF; text-align: right;">
-                            <a href="#" data-mini="true" id="botonCancelaDatosUSU" data-inline="true" data-role="button" name="botonCancelaDatosUSU" onclick="cancelaUsuSector();">Cancel·lar</a>                            
-                        </td>                  
-                        <td style="background-color: #009EFF; text-align: right;">
-                            <a href="#" data-mini="true" id="botonGuardaDatosUSU" data-inline="true" data-role="button" name="botonGuardaDatosUSU" onclick="guardaUsuSector();">Guardar</a>                            
-                        </td>                  
-                    </tr>  
-                </table>
-            </div>
-
-            <br/>
-
             <!-- LLISTA DE PACIENTS -->
             <div id="divPacients" name="divPacients">
                 <select name="selectPacient" id="selectPacient">
@@ -137,6 +108,35 @@
             </div>
 
             <br/>
+            
+            <!-- GESTIÓN USU y SECTOR -->
+            <div style="background-color: #009EFF;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td colspan="2" style="width: 50%;"><label for="text-basic" data-mini="true" style="color: white;">&nbsp;Usuari</label></td>
+                        <td colspan="2" style="width: 50%;"><label for="text-basic" data-mini="true" style="color: white;">&nbsp;Sector</label></td>                    
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="width: 50%;"><input type="text" name="txtCampUSU" id="txtCampUSU" data-mini="true" readonly></td>
+                        <td colspan="2" style="width: 50%;"><input type="text" name="txtCampSECTOR" id="txtCampSECTOR" data-mini="true" readonly></td>
+                    </tr>       
+                </table>
+                <table  style="width: 100%;">
+                    <tr id="trBotonGuardaDatosUSU" name="trBotonGuardaDatosUSU">
+                        <td style="background-color: #009EFF; text-align: left;">                            
+                            <a href="#" data-mini="true" id="botonGetPacients" data-inline="true" data-role="button" name="botonHistoricoUsuSector" onclick="getLlistaPacients();">Pacients</a>
+                        </td>                   
+                        <td style="background-color: #009EFF; text-align: right;">
+                            <a href="#" data-mini="true" id="botonCancelaDatosUSU" data-inline="true" data-role="button" name="botonCancelaDatosUSU" onclick="cancelaUsuSector();">Cancel·lar</a>                            
+                        </td>                  
+                        <td style="background-color: #009EFF; text-align: right;">
+                            <a href="#" data-mini="true" id="botonGuardaDatosUSU" data-inline="true" data-role="button" name="botonGuardaDatosUSU" onclick="guardaUsuSector();">Guardar</a>                            
+                        </td>                  
+                    </tr>  
+                </table>
+            </div>
+
+            <a href="#" id="abajo" name="abajo"></a> <!-- para mover el scroll hasta abajo de la página (y que se vea todo el panel SORTIDA) -->
 
         <!-- MENSAJES POP UPs -->
         <div data-role="popup" id="AvisEnvioOK" name="AvisEnvioOK" data-dismissible="false" data-history="false" data-position-to="window" class="ui-content" style="max-width:280px; background-color: #c7efc4;">

@@ -25,12 +25,6 @@ function JSONtoPacients(strJSONpacients)
                                       oJSONpacients[i]["cg2"],
                                       oJSONpacients[i]["dNaix"])
             );
-
-            alert(pacients[i].cip);
-
-            /*  for (var key in oJSONPac){
-                    var value = oJSONPac[key];
-                } */
         }
         return pacients;
     } catch (e){
