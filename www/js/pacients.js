@@ -1,30 +1,30 @@
 
-var pacient = {
-    cip: null,  
-    nom: null,
-    cg1: null,         
-    cg2: null,
-    dNaix: null
-};
+//objeto pacient
+function pacient(sCip,sNom,sCg1,sCg2,sDNaix){
+    this.cip=sCip;  
+    this.nom=sNom;
+    this.cg1=sCg1;
+    this.cg2=sCg2;
+    this.dNaix=sDNaix;    
+};    
 
 /* Devuelve array de objetos 'pacient' a partir del JSON recibido del servicio REST */
 function JSONtoPacients(strJSONpacients)
 {    
     /* var oJSONpacients = JSON.parse(strJSONpacients);
-    $.each(oJSONpacients, function(index, valor) { 
-
+    $.each(oJSONpacients, function(index, valor) {         
     }); */
 
     var pacients = {};
     try {
-        for (var i = 0; i < strJSONpacients.length; i++){        
-            var oUnPac = new pacient();
-            oUnPac.cip = strJSONpacients[i]["CIP"];
-            oUnPac.nom = strJSONpacients[i]["nom"];
-            oUnPac.cg1 = strJSONpacients[i]["cg1"];
-            oUnPac.cg2 = strJSONpacients[i]["cg2"];
-            oUnPac.dNaix = strJSONpacients[i]["dNaix"];
-            pacients.push(oUnPac);
+        for (var i = 0; i < strJSONpacients.length; i++){  
+alert(strJSONpacients[i]["CIP"]);                  
+            pacients.push(new pacient(strJSONpacients[i]["CIP"],
+                                      strJSONpacients[i]["nom"],
+                                      strJSONpacients[i]["cg1"],
+                                      strJSONpacients[i]["cg2"],
+                                      strJSONpacients[i]["dNaix"])
+            );
             /*  for (var key in oJSONPac){
                     var value = oJSONPac[key];
                 } */
@@ -41,7 +41,8 @@ function CrearLlistaDePacients(aPacients)
     if(aPacients.length > -1)
     {
         for(var i=0; i<aPacients.length; i++){
-            selPac.append('<option value="' + aPacients[i].CIP + '">' + aPacients[i].nom + ' ' + aPacients[i].cg1 + ' ' + aPacients[i].cg2 + '</option>');
+alert(aPacients[i].cip);            
+            selPac.append('<option value="' + aPacients[i].cip + '">' + aPacients[i].nom + ' ' + aPacients[i].cg1 + ' ' + aPacients[i].cg2 + '</option>');
         }
     }
     else
