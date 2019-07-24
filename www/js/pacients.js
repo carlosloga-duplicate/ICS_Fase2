@@ -16,20 +16,18 @@ function JSONtoPacients(strJSONpacients)
     }); */
 
     var oJSONpacients = JSON.parse(strJSONpacients);
-    alert('len: ' + oJSONpacients.length.toString());
-    alert(oJSONpacients[0]);
-    alert(oJSONpacients[0]["CIP"]);
-
     var pacients = new Array();
     try {
-        for (var i = 0; i < oJSONpacients.length; i++){  
-alert(oJSONpacients[i]["CIP"]);                  
+        for (var i = 0; i < oJSONpacients.length; i++){                    
             pacients.push(new pacient(oJSONpacients[i]["CIP"],
                                       oJSONpacients[i]["nom"],
                                       oJSONpacients[i]["cg1"],
                                       oJSONpacients[i]["cg2"],
                                       oJSONpacients[i]["dNaix"])
             );
+
+            alert(pacients[i].cip);
+
             /*  for (var key in oJSONPac){
                     var value = oJSONPac[key];
                 } */
@@ -42,11 +40,10 @@ alert(oJSONpacients[i]["CIP"]);
 
 function CrearLlistaDePacients(aPacients)
 {
-    var selPac = $("selectPacient");
+    var selPac = $("#selectPacient");
     if(aPacients.length > -1)
     {
-        for(var i=0; i<aPacients.length; i++){
-alert(aPacients[i].cip);            
+        for(var i=0; i<aPacients.length; i++){       
             selPac.append('<option value="' + aPacients[i].cip + '">' + aPacients[i].nom + ' ' + aPacients[i].cg1 + ' ' + aPacients[i].cg2 + '</option>');
         }
     }
