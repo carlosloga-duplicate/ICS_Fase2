@@ -229,6 +229,7 @@ alert(JSON.stringify(datosObtenidos));
     });  */
      
 
+    /* Este plugin (htmlson) funciona si el servicio REST devuelve objeto JSON (no string JSON) */
     $.ajax({
         url: constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,   
         type: "GET",
@@ -238,7 +239,8 @@ alert(JSON.stringify(datosObtenidos));
 /*            var respFormat = response;
 alert(respFormat);            
             respFormat = respFormat.replace('{"CIP":"','{"CIP":"<a href="#">X</a>');       
-alert(respFormat);     */        
+alert(respFormat);     */    
+            var objResp =  JSON.parse(response);
             var myTable = $('.example').htmlson({        
                 data: response         
             });
