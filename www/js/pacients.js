@@ -15,19 +15,20 @@ function JSONtoPacients(strJSONpacients)
     $.each(oJSONpacients, function(index, valor) {         
     }); */
 
-    alert('len: ' + strJSONpacients.length.toString());
-    alert(strJSONpacients[0]);
-    alert(strJSONpacients[0]["CIP"]);
-    
+    var oJSONpacients = JSON.parse(strJSONpacients);
+    alert('len: ' + oJSONpacients.length.toString());
+    alert(oJSONpacients[0]);
+    alert(oJSONpacients[0]["CIP"]);
+
     var pacients = new Array();
     try {
-        for (var i = 0; i < strJSONpacients.length; i++){  
-alert(strJSONpacients[i]["CIP"]);                  
-            pacients.push(new pacient(strJSONpacients[i]["CIP"],
-                                      strJSONpacients[i]["nom"],
-                                      strJSONpacients[i]["cg1"],
-                                      strJSONpacients[i]["cg2"],
-                                      strJSONpacients[i]["dNaix"])
+        for (var i = 0; i < oJSONpacients.length; i++){  
+alert(oJSONpacients[i]["CIP"]);                  
+            pacients.push(new pacient(oJSONpacients[i]["CIP"],
+                                      oJSONpacients[i]["nom"],
+                                      oJSONpacients[i]["cg1"],
+                                      oJSONpacients[i]["cg2"],
+                                      oJSONpacients[i]["dNaix"])
             );
             /*  for (var key in oJSONPac){
                     var value = oJSONPac[key];
