@@ -238,7 +238,17 @@ alert(JSON.stringify(datosObtenidos));
         success:function(response){  
             $('#pTxtAvis').html("");
             $('#Avis').hide();         
-            response = response.split('{"CIP":"').join('{"CIP":"<a href="#">X</a>');    
+            response = response.split('{"CIP":"').join('{"CIP":"<a href="#">X</a>');
+alert(response); 
+try
+{
+    var o = JSON.parse(response);
+    alert('ok'); 
+}   
+catch(e) 
+{
+    alert(e.message);
+}           
             var myTable = $('.example').htmlson({        
                 data: JSON.parse(response)       
             });
