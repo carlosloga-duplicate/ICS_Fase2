@@ -33,19 +33,19 @@ function CrearLlistaDePacients(aPacients)
 {
     /* vaciar combo */
     $('#selectPacient').empty();
-    /* o así:  $('#selectPacient').find('option').remove().end(); */
 
     /* llenar combo */
     var selPac = $("#selectPacient");
     if(aPacients.length > -1)
     {
+        selPac.append('<option value="">Seleccioni un pacient</option>');
         for(var i=0; i<aPacients.length; i++){       
             selPac.append('<option value="' + aPacients[i].cip + '">' + aPacients[i].nom + ' ' + aPacients[i].cg1 + ' ' + aPacients[i].cg2 + '</option>');
         }
     }
     else
     {
-        selPac.append('<option value="">No pacients</option>');
+        selPac.append('<option value="">No hi ha pacients</option>');
     }
     selPac.selectmenu();
     selPac.selectmenu('refresh', true);

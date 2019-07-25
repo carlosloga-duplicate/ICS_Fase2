@@ -87,8 +87,14 @@ var app = {
                     }
                 }             
  
-                /* jPut.users.data=[{"name":"Shabeer","email":"user@gmail.com","phone":"+51 23126"},{"name":"Shibu","email":"user@gmail.com","phone":"+51 23126"},{"name":"Shabeer","email":"user@gmail.com","phone":"+51 23126"}]; */
-
+                /* Recupera pacients de la última vez que se bajaron a este dispositivo */
+                var pacients = recuperaPacientsLS();
+                if(pacients != null)
+                {
+                    var aPacients = JSONtoPacients(pacients); /* convierte la cadena JSON en array de objects JSON */
+                    /* y cargar el combo */
+                    CrearLlistaDePacients(aPacients);    
+                }
             });                   
         }); 
         

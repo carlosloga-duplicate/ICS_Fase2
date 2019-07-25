@@ -149,8 +149,9 @@ function getLlistaPacients()
         headers: {"Accept": "application/json"},  
         success:function(response){  
             $('#pTxtAvis').html("");
-            $('#Avis').hide();         
-            var aPacients = JSONtoPacients(response);
+            $('#Avis').hide();       
+            guardaPacientsLS(response);  
+            var aPacients = JSONtoPacients(response); /* convierte string JSON a array de objects JSON */
             CrearLlistaDePacients(aPacients);             
          },
          error: function(request, status, error) { 
@@ -161,4 +162,24 @@ function getLlistaPacients()
      });
 }
 
+/* Guarda la lista de pacients (string JSON) en LocalStorage */
+function guardaPacientsLS(strJSONpacients)
+{
+    localStorage.setItem('llistaPacients',strJSONpacients);
+}
 
+/* Recupera la llista de pacients (string JSON) de LocalStorage */
+function recuperaPacientsLS()
+{
+    var aPacients = null;
+    try
+    {
+        aPacients = localStorage.getItem('llistaPacients');
+    }
+    catch(e)
+    {
+        aPacients = null;
+    }
+
+    return aPacients;
+}
