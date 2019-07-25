@@ -67,7 +67,7 @@ function onCapturePhoto(fileURI) {
  
     var options = new FileUploadOptions();
     options.fileKey = "file";
-    options.fileName = "Foto_" + Ahora() + "_" +  $("#txtCampUSU").val() + "_" + $("#txtCampSECTOR").val() + ".jpeg";  
+    options.fileName = creaNomFoto();  
     options.mimeType = "image/jpeg"; 
     options.chunkedMode = false;
     var params = {};
@@ -85,4 +85,10 @@ function onCapturePhoto(fileURI) {
         mensajePopup('KO', constants("ERRORtimeOut") , 0);        
     }, 50000);
 
+}
+
+function creaNomFoto()
+{
+    var foto = "Foto_" + Ahora() + "_" +  $("#txtCampUSU").val() + "_" + $("#txtCampSECTOR").val() + "_" + $("#selectPacient").val() + ".jpeg";
+    return foto;
 }
