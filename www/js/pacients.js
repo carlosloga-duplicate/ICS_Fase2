@@ -74,20 +74,20 @@ function getLlistaPacients()
         success:function(response){  
             $('#pTxtAvis').html("");
             $('#Avis').hide();    
-
-alert(response); 
-            guardaPacientsLS(response);  
            
             var aPacients = JSONtoPacients(response); /* convierte string JSON a array de objects JSON */
             if(aPacients.length > 0)
-            {
-alert(aPacients[0].toString());                
+            {               
                 if(aPacients[0].toString().indexOf("ERROR") > -1)
                 {
+                    guardaPacientsLS(aPacients[0].toString());
                     mensajePopup('KO', constants('ERRORRevent') + aPacients[0].toString() , 0);
                 }
                 else
+                {
+                    guardaPacientsLS(response);
                     CrearLlistaDePacients(aPacients); 
+                }
             }                        
          },
          error: function(request, status, error) { 
