@@ -44,6 +44,7 @@ function capturePhoto() {
     });
 }
 
+/* Envia los datos al web service REST */
 var retries = 0;
 function onCapturePhoto(fileURI) {
     var win = function (r) {

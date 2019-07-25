@@ -11,11 +11,7 @@ function pacient(sCip,sNom,sCg1,sCg2,sDNaix){
 /* Devuelve array de objetos 'pacient' a partir del JSON recibido del servicio REST */
 function JSONtoPacients(strJSONpacients)
 {    
-    /* var oJSONpacients = JSON.parse(strJSONpacients);
-    $.each(oJSONpacients, function(index, valor) {         
-    }); */
-
-    var oJSONpacients = JSON.parse(strJSONpacients);
+    var oJSONpacients = JSON.parse(strJSONpacients); /* convierto string JASON a objeto JSON */
     var pacients = new Array();
     try {
         for (var i = 0; i < oJSONpacients.length; i++){                    
@@ -32,6 +28,7 @@ function JSONtoPacients(strJSONpacients)
     }    
 }
 
+/* Llena el combo de pacients a partir del array de objetos 'pacient' */
 function CrearLlistaDePacients(aPacients)
 {
     var selPac = $("#selectPacient");
@@ -48,4 +45,6 @@ function CrearLlistaDePacients(aPacients)
     selPac.selectmenu();
     selPac.selectmenu('refresh', true);
 }
+
+
 
