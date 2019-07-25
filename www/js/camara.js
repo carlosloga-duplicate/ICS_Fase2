@@ -28,7 +28,7 @@ function clearCacheCamera() {
 
 function capturePhoto() {  
     var selectedCIPpacient = $("#selectPacient").val(); 
-    if(selectedCIPpacient == '')
+    if($("#selectPacient").size < 2 || selectedCIPpacient == '' || selectedCIPpacient == null || selectedCIPpacient == undefined)
     {
         mensajePopup('KO', 'ERROR: No hi ha cap pacient seleccionat',0); // + error.target, 0);
         return;
