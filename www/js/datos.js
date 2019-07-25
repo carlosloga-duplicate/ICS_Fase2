@@ -130,6 +130,8 @@ function getLlistaPacients()
     $('#pTxtAvis').html(constants("WAITRebent"));
     $('#Avis').show();
 
+    EstadoUSUsector(false); /* cierra el div de configuración */
+
     /*  Recuperar los datos guardados en LocalStorage o ...
         var datosUsu = recuperaDatosUSU();
         var sUsu = datosUsu.split("|")[0]; 
@@ -147,7 +149,7 @@ function getLlistaPacients()
             $('#pTxtAvis').html("");
             $('#Avis').hide();         
             var aPacients = JSONtoPacients(response);
-            CrearLlistaDePacients(aPacients);
+            CrearLlistaDePacients(aPacients);             
          },
          error: function(request, status, error) { 
             $('#pTxtAvis').html("");
