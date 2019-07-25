@@ -68,15 +68,17 @@ function cancelaUsuSector()
     EstadoUSUsector(false);
 }
 
-function cambiaUsuSector()
+function configuracio()
 {
     if($("#trBotonGuardaDatosUSU").is(':visible') )  
     {          
-        EstadoUSUsector(false);         
-        
+        EstadoUSUsector(false);                 
     }
     else
+    {
         EstadoUSUsector(true); 
+        ScrollHastaAbajo();
+    }
 }
 
 function historicoUsuSector()
