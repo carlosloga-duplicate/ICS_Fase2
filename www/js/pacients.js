@@ -31,6 +31,11 @@ function JSONtoPacients(strJSONpacients)
 /* Llena el combo de pacients a partir del array de objetos 'pacient' */
 function CrearLlistaDePacients(aPacients)
 {
+    /* vaciar combo */
+    $('#selectPacient').empty();
+    /* o así:  $('#selectPacient').find('option').remove().end(); */
+
+    /* llenar combo */
     var selPac = $("#selectPacient");
     if(aPacients.length > -1)
     {
