@@ -12,10 +12,12 @@ function EstadoUSUsector(bVer)
         $('#divBotonEnviar').prop('disabled', true);        
         
         $("#trBotonGuardaDatosUSU").show();   
+        $("#trbotonGetPacients").show();   
     }
     else
     {
         $("#trBotonGuardaDatosUSU").hide();
+        $("#trbotonGetPacients").hide();
         $('#txtCampUSU').prop('readonly', true);
         $('#txtCampSECTOR').prop('readonly', true);
 
