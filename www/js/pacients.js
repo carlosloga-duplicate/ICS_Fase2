@@ -36,7 +36,7 @@ function CrearLlistaDePacients(aPacients)
 
     /* llenar combo */
     var selPac = $("#selectPacient");
-    if(aPacients.length > -1)
+    if(aPacients.length > 0)
     {
         selPac.append('<option value="">Seleccioni un pacient</option>');
         for(var i=0; i<aPacients.length; i++){       
@@ -49,6 +49,53 @@ function CrearLlistaDePacients(aPacients)
     }
     selPac.selectmenu();
     selPac.selectmenu('refresh', true);
+}
+
+function getLlistaPacients()
+{
+    $('#pTxtAvis').html(constants("WAITRebent"));
+    $('#Avis').show();
+
+    EstadoUSUsector(false); /* cierra el div de configuración */
+
+    /*  Recuperar los datos guardados en LocalStorage o ...
+        var datosUsu = recuperaDatosUSU();
+        var sUsu = datosUsu.split("|")[0]; 
+        var sSector = datosUsu.split("|")[1];  */
+    /* ... o Recuperar los datos de los campos de texto  */
+    var sUsu = $('#txtCampUSU').val(); 
+    var sSector = $('#txtCampSECTOR').val(); 
+
+    $.ajax({
+        url: constants("urlServeiREST") + "pacients/" + sUsu + "/" + sSector,   
+        type: "GET",
+        dataType: "json",
+        headers: {"Accept": "application/json"},  
+        success:function(response){  
+            $('#pTxtAvis').html("");
+            $('#Avis').hide();    
+
+alert(response); 
+            guardaPacientsLS(response);  
+           
+            var aPacients = JSONtoPacients(response); /* convierte string JSON a array de objects JSON */
+            if(aPacients.length > 0)
+            {
+alert(aPacients[0].toString());                
+                if(aPacients[0].toString().indexOf("ERROR") > -1)
+                {
+                    mensajePopup('KO', constants('ERRORRevent') + aPacients[0].toString() , 0);
+                }
+                else
+                    CrearLlistaDePacients(aPacients); 
+            }                        
+         },
+         error: function(request, status, error) { 
+            $('#pTxtAvis').html("");
+            $('#Avis').hide();
+            mensajePopup('KO', constants('ERRORRevent') + status + "\n" + request.statusText + "\n" + request.status + "\n" + request.responseText + "\n" + request.getAllResponseHeaders(), 0);
+         }
+     });
 }
 
 
