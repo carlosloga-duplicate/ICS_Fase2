@@ -73,6 +73,7 @@ function onCapturePhoto(fileURI) {
     params.p_camp1 = $("#txtCampUSU").val();
     params.p_camp2 = $("#txtCampSECTOR").val();
     params.p_camp3 = $("textarea#txtCampOBS").val();
+    params.p_camp4 = $("#selectPacient").val();
     options.params = params;  
 
     var ft = new FileTransfer();
