@@ -78,10 +78,11 @@ function getLlistaPacients()
             var aPacients = JSONtoPacients(response); /* convierte string JSON a array de objects JSON */
             if(aPacients.length > 0)
             {               
-                if(aPacients[0].toString().indexOf("ERROR") > -1)
-                {
-                    guardaPacientsLS(aPacients[0].toString());
-                    mensajePopup('KO', constants('ERRORRevent') + aPacients[0].toString() , 0);
+                if(response.indexOf("ERROR") > -1)
+                {                    
+                    $('#selectPacient').empty(); /* vaciar combo */
+                    guardaPacientsLS("");
+                    mensajePopup('KO', constants('ERRORRevent') + response , 0);
                 }
                 else
                 {

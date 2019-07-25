@@ -40,8 +40,9 @@ function constants(sCual)
         dict['WAITEnviant'] = "Enviant dades al servidor ";
         dict['WAITTancant'] = "tancant l'aplicació ";
 
-        dict['NOConfig'] = "ERROR: Mòvil no  configurat. Informi usuari i sector si us plau ";
-        
+        dict['NOConfig'] = "ERROR: Mòvil no  configurat. Informi usuari i sector si us plau ";        
+        dict["NOpacients"] = "No s'ha trobat cap pacient ";
+
         sRet = dict[sCual].toString();
     }
     catch(err){
