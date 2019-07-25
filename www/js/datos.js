@@ -12,7 +12,8 @@ function EstadoUSUsector(bVer)
         $('#divBotonEnviar').prop('disabled', true);        
         
         $("#trBotonGuardaDatosUSU").show();   
-        $("#trbotonGetPacients").show();   
+        $("#trbotonGetPacients").show();  
+        ScrollHastaAbajo(); 
     }
     else
     {
@@ -77,7 +78,6 @@ function configuracio()
     else
     {
         EstadoUSUsector(true); 
-        ScrollHastaAbajo();
     }
 }
 
