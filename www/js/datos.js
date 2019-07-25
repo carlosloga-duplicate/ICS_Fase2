@@ -44,7 +44,7 @@ function recuperaDatosUSU()
     try{
         var sUsu = localStorage.getItem('USU');
         var sSector = localStorage.getItem('SECTOR');
-        if(sUsu == null || sSector == null)
+        if(sUsu == null || sSector == null || sUsu == undefined || sSector == undefined)
             return constants('NOConfig');
         else
             return sUsu + "|" + sSector;
@@ -175,6 +175,7 @@ function recuperaPacientsLS()
     try
     {
         aPacients = localStorage.getItem('llistaPacients');
+        if(aPacients == undefined) aPacients = null;
     }
     catch(e)
     {

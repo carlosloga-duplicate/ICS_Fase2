@@ -40,7 +40,7 @@ function constants(sCual)
         dict['WAITEnviant'] = "Enviant dades al servidor";
         dict['WAITTancant'] = "tancant l'aplicació";
 
-        dict['NOConfig'] = "Mòvil no  configurat. Informi usuari i sector si us plau";
+        dict['NOConfig'] = "ERROR: Mòvil no  configurat. Informi usuari i sector si us plau";
         
         sRet = dict[sCual].toString();
     }

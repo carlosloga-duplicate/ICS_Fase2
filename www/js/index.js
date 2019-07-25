@@ -65,26 +65,18 @@ var app = {
                     EstadoUSUsector(true);  //USU y SECTOR en modo edición   
                 }
 
-                if(datosUsu == undefined)  //compara si es null o es undefined (la function no devolvió nada) 
+                if(datosUsu.startsWith('ERROR')) 
                 {                       
-                    mensajePopup("KO", constants('NOConfig'), 0);
+                    mensajePopup("KO", datosUsu, 0);
                     EstadoUSUsector(true);  //USU y SECTOR en modo edición                        
                 }
                 else
                 {                                 
-                    if(datosUsu.startsWith("ERROR")) 
-                    {
-                        mensajePopup("KO", datosUsu, 0);
-                        EstadoUSUsector(true);  //USU y SECTOR en modo edición       
-                    }
-                    else
-                    {
-                        EstadoUSUsector(false);  //USU y SECTOR en modo consulta                                         
-                        var sUsu = datosUsu.split("|")[0]; 
-                        var sSector = datosUsu.split("|")[1];                        
-                        $("#txtCampUSU").val(sUsu);
-                        $("#txtCampSECTOR").val(sSector);                        
-                    }
+                    EstadoUSUsector(false);  //USU y SECTOR en modo consulta                                         
+                    var sUsu = datosUsu.split("|")[0]; 
+                    var sSector = datosUsu.split("|")[1];                        
+                    $("#txtCampUSU").val(sUsu);
+                    $("#txtCampSECTOR").val(sSector);                                            
                 }             
  
                 /* Recupera pacients de la última vez que se bajaron a este dispositivo */
