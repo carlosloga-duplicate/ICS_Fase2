@@ -59,7 +59,7 @@ function recuperaDatosUSU()
     }
 }
 
-/* Recoge el usuario y sector informados en el panel de configuración, 
+/* Recoge el usuario y sector informados en el panel de configuración,  
    llama a guardaDatosUSU y oculta/deshabilita el panel de configuración */
 function guardaUsuSector()
 {
@@ -69,7 +69,7 @@ function guardaUsuSector()
     EstadoUSUsector(false);
 }
 
-/* Llama a EstadoUSUsector para Ocultar y deshabilitar el panel de configuración */
+/* Llama a EstadoUSUsector para Ocultar/deshabilitar el panel de configuración */
 function cancelaUsuSector()
 {
     EstadoUSUsector(false);
@@ -111,6 +111,8 @@ function recuperaPacientsLS()
     return aPacients;
 }
 
+
+/* ************************************************************************** */
 /* NO SE UTILIZA */
 function historicoUsuSector()
 {

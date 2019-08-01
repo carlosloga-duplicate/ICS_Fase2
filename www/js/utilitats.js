@@ -1,6 +1,6 @@
 
 /* Devuelve un TimeSpan (string) para ser usado como ID único  
-   yyyymmddhhmissmls*/
+   en formato: yyyymmddhhmissms*/
 function Ahora() 
 {
     var x = new Date();
@@ -20,7 +20,7 @@ function Ahora()
     return ahora;
 }
 
-/* Diccionario de mensajes, etiquetas, etc fijos de la app  */  
+/* Diccionario de mensajes, etiquetas, etc. fijos de la app  */  
 function constants(sCual)
 {
     var dict = {};
@@ -82,7 +82,7 @@ function mensajePopup(cual, txtMsg, esperar)
     }
 }
 
-/* URL a la que se redirige cuando se pulsa el icono de la cabecera  */
+/* URL a la que se redirige cuando se pulsa el icono de la app (de la cabecera)  */
 function linkWebsiteICS()
 {
     location.href=constants("urlICS");

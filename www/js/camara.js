@@ -23,7 +23,7 @@ function clearCacheCamera() {
 }
 
 /* Monta y devuelve el nombre con el que se guardará la foto: 
-Foto_AnyMesDiaHoraMinutSegonMilisegon_Usuari_Sector_CIP}.jpeg */
+Foto_AñoMesDiaHoraMinutoSegundoMilisegundo_Usuario_Sector_CIP.jpeg */
 function creaNomFoto()
 {
     var foto = "Foto_" + Ahora() + "_" +  $("#txtCampUSU").val() + "_" + $("#txtCampSECTOR").val() + "_" + $("#selectPacient").val() + ".jpeg";

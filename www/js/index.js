@@ -20,16 +20,16 @@ var app = {
         destinationType = navigator.camera.DestinationType;
         
         $.doTimeout(2000, function(){ 
-            cordova.getAppVersion.getVersionNumber(function (version) {  //coge la vers. del tag 'version' del config.xml
+            cordova.getAppVersion.getVersionNumber(function (version) {  //coge la vers. del tag 'version' (en la primera línea del config.xml)
                 $("#tdPie").html("v." + version);   // Informa la vers. actual de la App en el pie de página 
-                $("#deviceready").hide();           // Oculta el panel inicial ('Carregant l'aplicació') 
+                $("#deviceready").hide();           // Oculta el panel inicial: 'Carregant l'aplicació' 
                 
                 EstadoUSUsector(false);             // Poner el panel de configuración en modo oculto/deshabilitado
 
                 $.mobile.changePage('#pagePrincipal', {transition: "flow"});  // Cargar la página principal
                 
-                /* Intenta recuperar los datos de configuración guardados en LocalStorage 
-                   y si los obtiene intentar cargar los pacients */
+                /* Intenta recuperar los datos de configuración guardados en LocalStorage (usuari i sector) 
+                   y si los obtiene intenta cargar los pacients guardados en LocalStorage */
                 if(cargaDatosConfig()) cargaPacients();    
 
             });                   
