@@ -45,7 +45,7 @@ function constants(sCual)
         dict['WAITEnviant'] = "Enviant dades al servidor ";
         dict['WAITTancant'] = "tancant l'aplicació ";
 
-        dict['NOConfig'] = "ERROR: Mòvil no  configurat. Informi usuari i sector si us plau ";        
+        dict['NOConfig'] = "ERROR: Dispositiu no configurat. Informi usuari i sector si us plau ";        
         dict["NOpacients"] = "No s'ha trobat cap pacient ";
         dict["INFOcarregarPacients"] = "No existeix cap pacient en aquest dispositiu, obtingui'ls mitjançant el botó 'Descarregar pacients' ";
         

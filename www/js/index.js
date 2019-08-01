@@ -29,45 +29,9 @@ var app = {
                 $.mobile.changePage('#pagePrincipal', {transition: "flow"});  // Cargar la página principal
 
                 
-                /* Recuperar los datos de configuración guardados en LocalStorage */
-                var datosUsu = "";
-                try
-                {
-                    datosUsu = recuperaDatosUSU();                                
-                    if(datosUsu.startsWith('ERROR')) // Si no se encuentran los datos de Usuario y Sector guardados en LocalStorage ... 
-                    {                       
-                        mensajePopup("KO", datosUsu, 0);
-                        EstadoUSUsector(true);      // Poner el panel de configuración en modo edición (visible/habilitado)                        
-                    }
-                    else
-                    {                                 
-                        EstadoUSUsector(false);         // Poner el panel de configuración en modo oculto/deshabilitado y 
-                        var sUsu = datosUsu.split("|")[0]; 
-                        var sSector = datosUsu.split("|")[1];                        
-                        $("#txtCampUSU").val(sUsu);     // Informar USU y SECTOR
-                        $("#txtCampSECTOR").val(sSector);                                            
-                    }    
-                }
-                catch(err)
-                {
-                    /* Si hubo error al acceder a LocalStorage */
-                    mensajePopup("KO", constants('ERRORConfig') + err.message, 0);
-                    EstadoUSUsector(true);              // Poner el panel de configuración en modo edición (visible/habilitado)
-                }         
- 
-                /* Recupera los pacients (de LocalStorage) de la última vez que se bajaron a este dispositivo */
-                var pacients = recuperaPacientsLS();
-                if(pacients != null)
-                {
-                    var aPacients = JSONtoPacients(pacients);   // convierte la cadena JSON en array de objects JSON                     
-                    CrearLlistaDePacients(aPacients);           // y cargar el combo con esos pacients 
-                }
-                else
-                {
-                    mensajePopup("KO", constants('INFOcarregarPacients'), 0);
-                    /* Poner el panel de configuración en modo edición (visible/habilitado) para que carguen los pacients */
-                    EstadoUSUsector(true);   
-                }
+                /* Intenta recuperar los datos de configuración guardados en LocalStorage 
+                   y si los obtiene llama a 'cargaPacients()' para intentar cargar los pacients */
+                if(cargaDatosConfig()) cargaPacients();    
 
             });                   
         }); 
@@ -94,8 +58,58 @@ var app = {
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');        
-    }
-
+    }    
 };
- 
+
+/* Recuperar los datos de configuración guardados en LocalStorage */
+function cargaDatosConfig()
+{
+    var bOK = false;
+    var datosUsu = "";
+    try
+    {
+        datosUsu = recuperaDatosUSU();                                
+        if(datosUsu.startsWith('ERROR')) // Si no se encuentran los datos de Usuario y Sector guardados en LocalStorage ... 
+        {                       
+            mensajePopup("KO", datosUsu, 0);
+            EstadoUSUsector(true);      // Poner el panel de configuración en modo edición (visible/habilitado)                        
+        }
+        else
+        {                                 
+            EstadoUSUsector(false);         // Poner el panel de configuración en modo oculto/deshabilitado y 
+            var sUsu = datosUsu.split("|")[0]; 
+            var sSector = datosUsu.split("|")[1];                        
+            $("#txtCampUSU").val(sUsu);     // Informar USU y SECTOR
+            $("#txtCampSECTOR").val(sSector);   
+            bOK = true;                        
+        }    
+    }
+    catch(err)
+    {
+        /* Si hubo error al acceder a LocalStorage */
+        mensajePopup("KO", constants('ERRORConfig') + err.message, 0);
+        EstadoUSUsector(true);              // Poner el panel de configuración en modo edición (visible/habilitado)
+    } 
+    return bOK;
+}
+
+/* Recupera los pacients (de LocalStorage) de la última vez que se bajaron a este dispositivo */
+function cargaPacients()
+{
+    var pacients = recuperaPacientsLS();
+    if(pacients != null)
+    {
+        var aPacients = JSONtoPacients(pacients);   // convierte la cadena JSON en array de objects JSON                     
+        CrearLlistaDePacients(aPacients);           // y cargar el combo con esos pacients 
+    }
+    else
+    {
+        mensajePopup("KO", constants('INFOcarregarPacients'), 0);
+        /* Poner el panel de configuración en modo edición (visible/habilitado) para que carguen los pacients */
+        EstadoUSUsector(true);   
+    }
+}
+
+
+
 
