@@ -27,10 +27,9 @@ var app = {
                 EstadoUSUsector(false);             // Poner el panel de configuración en modo oculto/deshabilitado
 
                 $.mobile.changePage('#pagePrincipal', {transition: "flow"});  // Cargar la página principal
-
                 
                 /* Intenta recuperar los datos de configuración guardados en LocalStorage 
-                   y si los obtiene llama a 'cargaPacients()' para intentar cargar los pacients */
+                   y si los obtiene intentar cargar los pacients */
                 if(cargaDatosConfig()) cargaPacients();    
 
             });                   
@@ -72,7 +71,8 @@ function cargaDatosConfig()
         if(datosUsu.startsWith('ERROR')) // Si no se encuentran los datos de Usuario y Sector guardados en LocalStorage ... 
         {                       
             mensajePopup("KO", datosUsu, 0);
-            EstadoUSUsector(true);      // Poner el panel de configuración en modo edición (visible/habilitado)                        
+            EstadoUSUsector(true);      // Poner el panel de configuración en modo edición (visible/habilitado)    
+            ScrollHastaAbajo();                     
         }
         else
         {                                 
