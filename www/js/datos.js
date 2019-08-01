@@ -1,4 +1,5 @@
 
+/* Oculta/deshabilita o muestra/habilita el panel de configuración de Usuario y Sector */
 function EstadoUSUsector(bVer)
 {
     if(bVer)
@@ -34,12 +35,14 @@ function EstadoUSUsector(bVer)
     }
 }
 
+/* Guarda en localStorage el usuario y sector informados en el panel de configuración */
 function guardaDatosUSU(sUsu, sSector)
 {
     localStorage.setItem('USU', sUsu);
     localStorage.setItem('SECTOR', sSector);
 }
 
+/* Recupera y devuelve el usuario y sector guardados en localStorage  */
 function recuperaDatosUSU()
 {
     try{
@@ -56,6 +59,8 @@ function recuperaDatosUSU()
     }
 }
 
+/* Recoge el usuario y sector informados en el panel de configuración, 
+   llama a guardaDatosUSU y oculta/deshabilita el panel de configuración */
 function guardaUsuSector()
 {
     var sUsu = $("#txtCampUSU").val();
@@ -64,11 +69,13 @@ function guardaUsuSector()
     EstadoUSUsector(false);
 }
 
+/* Llama a EstadoUSUsector para Ocultar y deshabilitar el panel de configuración */
 function cancelaUsuSector()
 {
     EstadoUSUsector(false);
 }
 
+/* Decide si se oculta o muestra el panel de configuración de Usuario y Sector */
 function configuracio()
 {
     if($("#trBotonGuardaDatosUSU").is(':visible') )  
@@ -81,6 +88,30 @@ function configuracio()
     }
 }
 
+/* Guarda la lista de pacients (como string JSON) en LocalStorage */
+function guardaPacientsLS(strJSONpacients)
+{
+    localStorage.setItem('llistaPacients',strJSONpacients);
+}
+
+/* Recupera la llista de pacients (como string JSON) guardada en LocalStorage */
+function recuperaPacientsLS()
+{
+    var aPacients = null;
+    try
+    {
+        aPacients = localStorage.getItem('llistaPacients');
+        if(aPacients == undefined) aPacients = null;
+    }
+    catch(e)
+    {
+        aPacients = null;
+    }
+
+    return aPacients;
+}
+
+/* NO SE UTILIZA */
 function historicoUsuSector()
 {
     $('#pTxtAvis').html(constants("WAITRebent"));
@@ -127,25 +158,3 @@ function historicoUsuSector()
 
 }
 
-/* Guarda la lista de pacients (string JSON) en LocalStorage */
-function guardaPacientsLS(strJSONpacients)
-{
-    localStorage.setItem('llistaPacients',strJSONpacients);
-}
-
-/* Recupera la llista de pacients (string JSON) de LocalStorage */
-function recuperaPacientsLS()
-{
-    var aPacients = null;
-    try
-    {
-        aPacients = localStorage.getItem('llistaPacients');
-        if(aPacients == undefined) aPacients = null;
-    }
-    catch(e)
-    {
-        aPacients = null;
-    }
-
-    return aPacients;
-}

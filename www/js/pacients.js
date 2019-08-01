@@ -8,10 +8,33 @@ function pacient(sCip,sNom,sCg1,sCg2,sDNaix){
     this.dNaix=sDNaix;    
 };    
 
-/* Devuelve array de objetos 'pacient' a partir del JSON recibido del servicio REST */
+/* Llena el combo de pacients a partir del array de objetos 'pacient' */
+function CrearLlistaDePacients(aPacients)
+{
+    /* vaciar combo */
+    $('#selectPacient').empty();
+
+    /* llenar combo */
+    var selPac = $("#selectPacient");
+    if(aPacients.length > 0)
+    {
+        selPac.append('<option value="">' + constants("CAPTIONselPacient") + '</option>');
+        for(var i=0; i<aPacients.length; i++){       
+            selPac.append('<option value="' + aPacients[i].cip + '">' + aPacients[i].nom + ' ' + aPacients[i].cg1 + ' ' + aPacients[i].cg2 + '</option>');
+        }
+    }
+    else
+    {
+        selPac.append('<option value="">' + constants("NOpacients") + '</option>');
+    }
+    selPac.selectmenu();
+    selPac.selectmenu('refresh', true);
+}
+
+/* Devuelve array de objetos 'pacient' a partir del string JSON recibido del servicio REST */
 function JSONtoPacients(strJSONpacients)
 {    
-    var oJSONpacients = JSON.parse(strJSONpacients); /* convierto string JASON a objeto JSON */
+    var oJSONpacients = JSON.parse(strJSONpacients); /* convertir string JSON a objeto JSON */
     var pacients = new Array();
     try {
         for (var i = 0; i < oJSONpacients.length; i++){                    
@@ -28,29 +51,7 @@ function JSONtoPacients(strJSONpacients)
     }    
 }
 
-/* Llena el combo de pacients a partir del array de objetos 'pacient' */
-function CrearLlistaDePacients(aPacients)
-{
-    /* vaciar combo */
-    $('#selectPacient').empty();
-
-    /* llenar combo */
-    var selPac = $("#selectPacient");
-    if(aPacients.length > 0)
-    {
-        selPac.append('<option value="">Seleccioni un pacient</option>');
-        for(var i=0; i<aPacients.length; i++){       
-            selPac.append('<option value="' + aPacients[i].cip + '">' + aPacients[i].nom + ' ' + aPacients[i].cg1 + ' ' + aPacients[i].cg2 + '</option>');
-        }
-    }
-    else
-    {
-        selPac.append('<option value="">No hi ha pacients</option>');
-    }
-    selPac.selectmenu();
-    selPac.selectmenu('refresh', true);
-}
-
+/* Crida al servei REST demanant els pacients */
 function getLlistaPacients()
 {
     $('#pTxtAvis').html(constants("WAITRebent"));

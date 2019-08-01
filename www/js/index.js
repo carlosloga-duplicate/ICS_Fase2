@@ -1,34 +1,12 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 var pictureSource;   // picture source
 var destinationType; // sets the format of returned value
 
 var app = {
-    // Application Constructor
+    // Constructor de la App
     initialize: function() {
         this.bindEvents();
     },
     // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
@@ -42,71 +20,71 @@ var app = {
         destinationType = navigator.camera.DestinationType;
         
         $.doTimeout(2000, function(){ 
-            cordova.getAppVersion.getVersionNumber(function (version) {  //coge la v. del tag version del config.xml
-                $("#tdPie").html("v." + version);                    
-                $("#deviceready").hide();
+            cordova.getAppVersion.getVersionNumber(function (version) {  //coge la vers. del tag 'version' del config.xml
+                $("#tdPie").html("v." + version);   // Informa la vers. actual de la App en el pie de página 
+                $("#deviceready").hide();           // Oculta el panel inicial ('Carregant l'aplicació') 
                 
-                EstadoUSUsector(false);  //USU y SECTOR en modo consulta
+                EstadoUSUsector(false);             // Poner el panel de configuración en modo oculto/deshabilitado
 
-                $.mobile.changePage('#pagePrincipal', {transition: "flow"}); 
+                $.mobile.changePage('#pagePrincipal', {transition: "flow"});  // Cargar la página principal
 
-                /* Inhabilitar el envio hasta que se seleccione un pacient */
-                $("#divObservacions").children().prop('disabled',true);
-                $("#divBotonEnviar").children().prop('disabled',true);   
-
+                
+                /* Recuperar los datos de configuración guardados en LocalStorage */
                 var datosUsu = "";
                 try
                 {
-                    datosUsu = recuperaDatosUSU();                                     
+                    datosUsu = recuperaDatosUSU();                                
+                    if(datosUsu.startsWith('ERROR')) // Si no se encuentran los datos de Usuario y Sector guardados en LocalStorage ... 
+                    {                       
+                        mensajePopup("KO", datosUsu, 0);
+                        EstadoUSUsector(true);      // Poner el panel de configuración en modo edición (visible/habilitado)                        
+                    }
+                    else
+                    {                                 
+                        EstadoUSUsector(false);         // Poner el panel de configuración en modo oculto/deshabilitado y 
+                        var sUsu = datosUsu.split("|")[0]; 
+                        var sSector = datosUsu.split("|")[1];                        
+                        $("#txtCampUSU").val(sUsu);     // Informar USU y SECTOR
+                        $("#txtCampSECTOR").val(sSector);                                            
+                    }    
                 }
                 catch(err)
                 {
+                    /* Si hubo error al acceder a LocalStorage */
                     mensajePopup("KO", constants('ERRORConfig') + err.message, 0);
-                    EstadoUSUsector(true);  //USU y SECTOR en modo edición   
-                }
-
-                if(datosUsu.startsWith('ERROR')) 
-                {                       
-                    mensajePopup("KO", datosUsu, 0);
-                    EstadoUSUsector(true);  //USU y SECTOR en modo edición                        
-                }
-                else
-                {                                 
-                    EstadoUSUsector(false);  //USU y SECTOR en modo consulta                                         
-                    var sUsu = datosUsu.split("|")[0]; 
-                    var sSector = datosUsu.split("|")[1];                        
-                    $("#txtCampUSU").val(sUsu);
-                    $("#txtCampSECTOR").val(sSector);                                            
-                }             
+                    EstadoUSUsector(true);              // Poner el panel de configuración en modo edición (visible/habilitado)
+                }         
  
-                /* Recupera pacients de la última vez que se bajaron a este dispositivo */
+                /* Recupera los pacients (de LocalStorage) de la última vez que se bajaron a este dispositivo */
                 var pacients = recuperaPacientsLS();
                 if(pacients != null)
                 {
-                    var aPacients = JSONtoPacients(pacients); /* convierte la cadena JSON en array de objects JSON */
-                    /* y cargar el combo */
-                    CrearLlistaDePacients(aPacients);    
+                    var aPacients = JSONtoPacients(pacients);   // convierte la cadena JSON en array de objects JSON                     
+                    CrearLlistaDePacients(aPacients);           // y cargar el combo con esos pacients 
                 }
+                else
+                {
+                    mensajePopup("KO", constants('INFOcarregarPacients'), 0);
+                    /* Poner el panel de configuración en modo edición (visible/habilitado) para que carguen los pacients */
+                    EstadoUSUsector(true);   
+                }
+
             });                   
         }); 
         
-        /* Evento al seleccionar un pacient */
+        /* Evento del combo al seleccionar un pacient */
         $("#selectPacient").change(function() {
             var CIPsel = $(this).val(); 
-            if(CIPsel != '') /* Si se ha seleccionado un pacient ==> hailitar el envio */
-            {
-                $("#divObservacions").children().prop('disabled',false);
-                $("#divBotonEnviar").children().prop('disabled',false);                 
-            }
         });
 
         /* SALIR DE LA APP CUANDO SE PULSE LA TECLA BACK */
         $(window).on("navigate", function (event, data) {
             var direction = data.state.direction;
             if (direction == 'back') {
-                setTimeout(function(){ navigator.app.exitApp(); }, 1500);                
+                setTimeout(function(){ navigator.app.exitApp(); }, 500);                
             }
         });
+        
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

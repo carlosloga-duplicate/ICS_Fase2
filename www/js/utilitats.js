@@ -1,4 +1,6 @@
 
+/* Devuelve un TimeSpan (string) para ser usado como ID único  
+   yyyymmddhhmissmls*/
 function Ahora() 
 {
     var x = new Date();
@@ -18,6 +20,7 @@ function Ahora()
     return ahora;
 }
 
+/* Diccionario de mensajes, etiquetas, etc fijos de la app  */  
 function constants(sCual)
 {
     var dict = {};
@@ -25,6 +28,7 @@ function constants(sCual)
     try
     {
         dict['urlServeiREST'] = "http://a200.ecap.intranet.gencat.cat/REST_1_ICS/api/";
+        dict['urlICS'] = "http://ics.gencat.cat/ca/inici";
 
         dict['ERRORGenerico'] = "S´ha produit un error ";
         dict['ERROREnviant'] = "ERROR enviant les dades ";
@@ -32,6 +36,7 @@ function constants(sCual)
         dict['ERRORFoto'] = "ERROR capturant foto ";
         dict['ERRORConfig'] = "ERROR recuperant l´usuari/sector d´aquest mòvil: ";
         dict['ERRORtimeOut'] = "S'ha excedit el temps d'enviament ";
+        dict['ERRORenviantFoto'] = "ERROR enviant la foto ";
 
         dict['OKEnviant'] = "Les dades s´han enviat correctament ";
         dict['OKRebent'] = "Les dades s´han rebut correctament ";    
@@ -42,6 +47,9 @@ function constants(sCual)
 
         dict['NOConfig'] = "ERROR: Mòvil no  configurat. Informi usuari i sector si us plau ";        
         dict["NOpacients"] = "No s'ha trobat cap pacient ";
+        dict["INFOcarregarPacients"] = "No existeix cap pacient en aquest dispositiu, obtingui'ls mitjançant el botó 'Descarregar pacients' ";
+        
+        dict["CAPTIONselPacient"] = "Seleccioni un pacient ";
 
         sRet = dict[sCual].toString();
     }
@@ -52,6 +60,9 @@ function constants(sCual)
     return sRet;
 }
 
+/* Muestra un Popup centrado en pantalla que desaparece cuando
+   el usuario pulsa su botón de cierre (si esperar = 0) 
+   o cuando pasan un número de milisegundos (si esperar > 0) */
 function mensajePopup(cual, txtMsg, esperar)
 {
     $('#Avis').hide();
@@ -71,14 +82,17 @@ function mensajePopup(cual, txtMsg, esperar)
     }
 }
 
+/* URL a la que se redirige cuando se pulsa el icono de la cabecera  */
 function linkWebsiteICS()
 {
-    location.href='http://ics.gencat.cat/ca/inici';
+    location.href=constants("urlICS");
 }
 
+/* Mueve el cursor hasta el final de la pantalla  */
 function ScrollHastaAbajo()
 {
     $('html, body').animate({
         scrollTop: $("#abajo").offset().top
     }, 500);
 }
+

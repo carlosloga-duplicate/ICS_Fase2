@@ -1,11 +1,6 @@
 var nEnvia;
 
-function onFailCamera(message) {
-    $('#Avis').hide();
-    mensajePopup('KO', constants("ERROREnviant") + "\n" + message, 0);
-    $('#divBotonEnviar').show(); //Mostrar de nuevo el botón de Adjuntar i enviar foto
-}
-
+/* Mostrar mensaje de OK si la foto y los datos se han enviado correctamente  */
 var OKfoto = function (r) {    
     clearTimeout(nEnvia); 
     $('#Avis').hide();
@@ -14,10 +9,11 @@ var OKfoto = function (r) {
     $("#txtCampOBS").val("");
 }
 
+/* Mostrar mensaje de error si ocurre un error al enviar la foto y los datos */
 var ERRORfoto = function (error) {
     clearTimeout(nEnvia); 
     $('#Avis').hide();
-    mensajePopup('KO', 'ERROR: (codi:' + error.code + ' / ' + error.message + ') enviant la foto ',0); // + error.target, 0);
+    mensajePopup('KO', constants("ERRORenviantFoto") + ' (codi:' + error.code + ' / ' + error.message + ') ',0); // + error.target, 0);
     $('#divBotonEnviar').show(); //Mostrar de nuevo el botón de Adjuntar i enviar foto
     //alert("ERROR enviant dades: \nCODE: " + error.code + ' \nSOURCE: ' + error.source + ' \nTARGET: ' + error.target);
 }
@@ -26,25 +22,23 @@ function clearCacheCamera() {
     navigator.camera.cleanup();
 }
 
-function capturePhoto() {  
-    var selectedCIPpacient = $("#selectPacient").val(); 
-    if($("#selectPacient").size < 2 || selectedCIPpacient == '' || selectedCIPpacient == null || selectedCIPpacient == undefined)
-    {
-        mensajePopup('KO', 'ERROR: No hi ha cap pacient seleccionat',0); // + error.target, 0);
-        return;
-    }
-    $('#divBotonEnviar').hide(); //Ocultar botón de Adjuntar i enviar foto
-    $('#pTxtAvis').html(constants('WAITEnviant')); //Mostrar aviso 'enviando...'
-    $('#Avis').show();
-    EstadoUSUsector(false); 
-    navigator.camera.getPicture(onCapturePhoto, onFailCamera, {
-        quality: 100,
-        destinationType: destinationType.FILE_URI,
-        saveToPhotoAlbum: false
-    });
+/* Monta y devuelve el nombre con el que se guardará la foto: 
+Foto_AnyMesDiaHoraMinutSegonMilisegon_Usuari_Sector_CIP}.jpeg */
+function creaNomFoto()
+{
+    var foto = "Foto_" + Ahora() + "_" +  $("#txtCampUSU").val() + "_" + $("#txtCampSECTOR").val() + "_" + $("#selectPacient").val() + ".jpeg";
+    return foto;
 }
 
-/* Envia los datos al web service REST */
+/* Mensaje si falla la captura de la foto */
+function onFailCamera(message) {
+    $('#Avis').hide();
+    mensajePopup('KO', constants("ERROREnviant") + "\n" + message, 0);
+    $('#divBotonEnviar').show(); //Mostrar de nuevo el botón de Adjuntar i enviar foto
+}
+
+/* Envia los datos (foto, observacions, usuari, sector y CIP) al web service REST 
+   (si va bien: OKfoto, si va mal: ERRORfoto)*/
 var retries = 0;
 function onCapturePhoto(fileURI) {
     var win = function (r) {
@@ -87,8 +81,24 @@ function onCapturePhoto(fileURI) {
 
 }
 
-function creaNomFoto()
-{
-    var foto = "Foto_" + Ahora() + "_" +  $("#txtCampUSU").val() + "_" + $("#txtCampSECTOR").val() + "_" + $("#selectPacient").val() + ".jpeg";
-    return foto;
+/* Recoge la foto de la aplicación de la cámara 
+   (si va bien: onCapturePhoto, si va mal: onFailCamera) */
+function capturePhoto() {  
+    var selectedCIPpacient = $("#selectPacient").val(); 
+    if($("#selectPacient").size < 2 || selectedCIPpacient == '' || selectedCIPpacient == null || selectedCIPpacient == undefined)
+    {
+        mensajePopup('KO', constants("CAPTIONselPacient"), 0); // + error.target, 0);
+        return;
+    }
+    $('#divBotonEnviar').hide(); //Ocultar botón de Adjuntar i enviar foto
+    $('#pTxtAvis').html(constants('WAITEnviant')); //Mostrar aviso 'enviando...'
+    $('#Avis').show();
+    EstadoUSUsector(false); 
+    navigator.camera.getPicture(onCapturePhoto, onFailCamera, {
+        quality: 50,
+        destinationType: destinationType.FILE_URI,
+        saveToPhotoAlbum: false
+    });
 }
+
+
